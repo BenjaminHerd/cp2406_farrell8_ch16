@@ -1,5 +1,5 @@
 /*
-
+Show message from size 6 to 20 in the same font
  */
 
 //import statements
