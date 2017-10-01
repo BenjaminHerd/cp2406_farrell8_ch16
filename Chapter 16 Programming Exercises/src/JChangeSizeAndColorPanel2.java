@@ -1,3 +1,4 @@
+
 /*
 Extends Jpanel, displays phrase in a large font.
 Each time the user clicks a button, display phrase in a
@@ -12,13 +13,15 @@ import java.awt.*;
 import java.awt.event.*;
 
 //main class constructor
-public class JChangeSizeAndColorPanel extends JPanel implements ActionListener{
+public class JChangeSizeAndColorPanel2 extends JPanel implements ActionListener{
 
     //Layout components and variable declaration
     String message = "Text to be changed";
     final int Y_POS = 120;
-    int xPos = 10;
-    int size = 40;
+    final int START_X = 10;
+    int xPos = START_X;
+    final int START_SIZE = 40;
+    int size = START_SIZE;
     int counter = 0;
 
     JButton button = new JButton("Click here");
@@ -30,7 +33,7 @@ public class JChangeSizeAndColorPanel extends JPanel implements ActionListener{
     final int MAX_CLICKS = 3;
 
     //public class function
-    public JChangeSizeAndColorPanel(){
+    public JChangeSizeAndColorPanel2(){
         setBackground(Color.WHITE);
         add(button);
         button.addActionListener(this);
@@ -49,26 +52,29 @@ public class JChangeSizeAndColorPanel extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e){
-        Object source = e.getSource();
-        ++counter;
+
         //if statements for number of clicks of the button
-        if (counter == 1){
+        if (counter == 0){
             color = Color.BLUE;
         }
-        else if (counter == 2) {
+        else if (counter == 1) {
             color = Color.GREEN;
         }
-        else if (counter == 3) {
+        else if (counter == 2) {
             color = Color.RED;
-            button.setEnabled(false);
-            }
-
+        }
+        ++counter;
         size -= CHANGE;
         xPos += MOVE_TO_RIGHT;
-        if (counter <= MAX_CLICKS)
-            repaint();
 
+        if (counter > MAX_CLICKS) {
+            color = Color.BLACK;
+            xPos = START_X;
+            size = START_SIZE;
+            counter = 0;
         }
+        repaint();
+    }
 
     //running application
     public static void main(String[] args) {
