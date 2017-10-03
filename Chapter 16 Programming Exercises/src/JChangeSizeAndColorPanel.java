@@ -49,7 +49,6 @@ public class JChangeSizeAndColorPanel extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e){
-        Object source = e.getSource();
         ++counter;
         //if statements for number of clicks of the button
         if (counter == 1){
@@ -58,22 +57,22 @@ public class JChangeSizeAndColorPanel extends JPanel implements ActionListener{
         else if (counter == 2) {
             color = Color.GREEN;
         }
-        else if (counter == 3) {
+        else if (counter >= 3) {
             color = Color.RED;
             button.setEnabled(false);
+
             }
 
         size -= CHANGE;
         xPos += MOVE_TO_RIGHT;
-        if (counter <= MAX_CLICKS)
-            repaint();
+        repaint();
 
         }
 
     //running application
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        frame.add(new JChangeSizeAndColorPanel2());
+        frame.add(new JChangeSizeAndColorPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setSize(600, 200);
